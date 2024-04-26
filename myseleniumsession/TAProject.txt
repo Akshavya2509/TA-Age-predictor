@@ -1,0 +1,32 @@
+Comments
+
+Applied invocationCount and threadPoolSize commands but there occured certians errors
+
+1: Accessing the same website by multiple threads at the same time caused errors due to access management.
+
+2: 
+
+@DataProvider(name = "numbers")
+public Object[][] data{
+  return new Object[][]{
+    ["abcdef", "123456"],
+    ["abcdef", "1234567890987654321"]
+  };
+}
+
+@Test(dataProvider = "numbers", enabled = true, priority = -7, groups = { "login", "1" })
+  public void size(String password, String username) throws InterruptedException {
+    s += "size ";
+    WebDriverManager.chromedriver().setup();
+    WebDriver driver = new ChromeDriver();
+
+    driver.get("http://localhost:5001/signup");
+    driver.manage().window().maximize();
+
+    driver.findElement(By.id("name")).sendKeys(username);
+    driver.findElement(By.id("password")).sendKeys(password);
+    Thread.sleep(2000);
+    driver.findElement(By.className("submit-btn")).click();
+    Thread.sleep(2000);
+    driver.quit();
+  }

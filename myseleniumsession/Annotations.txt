@@ -1,0 +1,139 @@
+#Annotations
+
+public class D{
+  @test(enables = true)
+  func
+
+  @test(enables - false)
+  func1
+}
+
+dataProvider method
+
+@test(dataProvider = "getData")
+
+dataProviderClass
+
+@Test(dataProvider"getdata", dataProviderClass = Hello.class)
+
+groups
+
+@test(groups = {"groupName1", "groupName2", ___})
+
+public class GroupingMethods{
+  @test(groups={"4 wheeler"})
+  func
+  @test(groups={"2 wheeler"})
+  func
+  @test(groups={"2 wheeler, 4 wheeler"})
+  func
+}
+
+dependsOnGroup
+@test(dependsOnGroups = "Name of group the function depends on")
+
+public class dependsOnGroup{
+  @Test(groups = "Group A")
+  func
+  @Test(dependsOnGroup = "Group B")
+  func
+  @Test(groups = "Group B")
+  func
+}
+
+// Order of execution Group A, Group B, depends on wala
+
+DependsOnMethods
+depends on single method or group of GroupingMethods
+
+@test(DependsOnMethods = {"Method1", "Method2"})
+
+@test
+func
+@test()
+func1
+@test
+func2{
+  Assert.fail();
+  //The above line is an assertion which decides whether a method passes or fails
+  //Here we havent decided any logic to tell whether the method has failed or passed
+
+  Therefore this method will fail
+}
+@test(dependsOnMethods = {"func2" "func"})
+func3
+Since func2 failed, therefore func3 will be skipped
+
+Therefore order of execution will be: func1, func
+Output: func1, func, func2 failed, func3 skipped
+
+alwaysRun
+Takes value true or false
+
+public void m1(){
+  Assert.fail();
+}
+@test(dependsOnMethods = {"m1"})
+Method2
+
+@Test(dependsOnmethods = {"m1"}, alwaysRun = true)
+m3
+
+Here since m1 failed, therefore technically neither of m2 or m3 should run, but since alwaysRun is true for m3, therefore , it will always run irrespective that whether m1 has failed or passed
+
+If alwaysRun os false, then the method it is applied on should be dependednt on a method. Otherwise there is no use of usign alwaysRun
+
+Now if it depends on a method and the method fails, then the method with always run will not run else it will run
+
+invocationTimeOut
+@test(invocationTimeOut = time_in_ms)
+if the method is not invoked in invocationTimeOut time, then the method fails
+
+priority
+default value is 0
+sets priority at test method level
+lower priorities will be scheduled first for execution
+
+@test(priority = 1)
+func
+@test(priority = 0)
+func1
+@test(priority = -1)
+func2
+@test(priority = -2)
+func3
+
+output : func3, func2, func, func1
+
+timeOut
+
+if method completes execution in timeout time then it ispassed else it is considered to be failed
+
+@Test(timeOut = 200)
+public void m1() throws InterruptedException{
+  Thread.sleep(500);
+}
+
+@Test
+m2
+
+@Test(timeOut = 200)
+m3{
+  Thread.sleep(100);
+}
+
+Output: m1 failed, m2, m3
+
+threadPoolSize
+specify size of threadPool for the method it is applied on
+
+@Test(invocationCount = 3, threadPoolSize = 3)
+m1{
+  sop(Thread.currentThread().getId());
+}
+
+//Here some of the threads will execute multiple times
+@Test(invocationCount = 5, threadPoolSize = 3)
+m1{
+  sop(Thread.currentThread().getId());
+}

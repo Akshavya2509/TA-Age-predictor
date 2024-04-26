@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestNGTest-02d29ef5-9781-4419-8002-a01d7943471c"
+           tests="10"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="201.149">
+    <properties></properties>
+
+
+
+            <testcase
+                name="captureImages"
+                time="73.382"
+                classname="test">
+            </testcase>
+            <testcase
+                name="size"
+                time="7.744"
+                classname="test">
+            </testcase>
+            <testcase
+                name="specialCharacters"
+                time="7.584"
+                classname="test">
+            </testcase>
+            <testcase
+                name="ValidLogin"
+                time="9.080"
+                classname="test">
+            </testcase>
+            <testcase
+                name="uppercase"
+                time="7.830"
+                classname="test">
+            </testcase>
+            <testcase
+                name="size"
+                time="29.228"
+                classname="test">
+            </testcase>
+            <testcase
+                name="validSignUp"
+                time="8.496"
+                classname="test">
+            </testcase>
+            <testcase
+                name="whitespaceError"
+                time="7.699"
+                classname="test">
+            </testcase>
+            <testcase
+                name="faceDetection"
+                time="42.080"
+                classname="test">
+            </testcase>
+            <testcase
+                name="lowercase"
+                time="8.026"
+                classname="test">
+            </testcase>
+</testsuite>
